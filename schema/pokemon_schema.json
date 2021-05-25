@@ -1,0 +1,15 @@
+{
+   "title":"Pokemon",
+   "type":"object",
+   "required":["name", "picture"],
+   "properties":{
+      "name":{
+         "type":"string",
+         "description":"Nombre del Pokemon."
+      },
+      "picture":{
+         "type":"string",
+         "description":"url de la imagen del pokemon"
+      }
+   }
+}

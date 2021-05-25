@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+   <head>
+      <meta charset="UTF-8">
+      <h1 class="header-title">Pokemon finder</h1>
+      <p class="header-description">El que quiere Pokemons, que los busque.</p>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Formulario para Pokemones</title>
+   </head>
+
+   <body>
+      <form method="POST" action="{{url_for('pokemon_search')}}">
+         <input name="name_pokemon" required type="text" placeholder="Ingrese el nombre a buscar" pattern="[a-zA-Z]+"
+            title="Ingrese un nombre de pokemon <SOLO ALFABETO>">
+            <br><br>
+            <input type="submit" value="Buscar">
+      </form>
+
+      <br>
+      <br>
+      <h2 class="main-title">Resultados de la búsqueda</h2>
+
+      <ol>
+         {%for pokemon in found_pokemons%}
+             <p><img src={{pokemon.get_picture_pokemon()}} width="150" height="150" style="vertical-align:middle">
+             {{pokemon.get_name_pokemon()}}</p>
+         {%endfor%}
+      </ol>
+   </body>
+
+   <footer>
+      <span>Hecho por Rodrigo Quispe</span>
+      <a href="https://github.com/RRodriQZ/pokemon-finder.git">Link a mi repo</a>
+    </footer>
+
+</html>
