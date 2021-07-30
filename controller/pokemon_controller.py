@@ -20,27 +20,27 @@ def search_pokemons_by_name(search_pokemon_name: str, pokedex: list[dict]) -> li
         pokemons_found = []
         search_pokemon_name = search_pokemon_name.lower()
 
-        logger.info(f'=== The search (partial/complete) of the POKEMON: "{search_pokemon_name}" ===')
+        logger.info(
+            f'=== The search (partial/complete) of the POKEMON: "{search_pokemon_name}" ==='
+        )
 
         for pokemon in pokedex:
             try:
-                if pokemon['name'].startswith(search_pokemon_name):
-                    response_pokemon = get_response_by_url(url=pokemon['url'])
+                if pokemon["name"].startswith(search_pokemon_name):
 
-                    name_pokemon = pokemon['name']
-                    picture_pokemon = response_pokemon['sprites']['front_default']
+                    response_pokemon = get_response_by_url(url=pokemon["url"])
+                    name_pokemon = pokemon["name"]
+                    picture_pokemon = response_pokemon["sprites"]["front_default"]
 
                     validate_pokemon_for_schema(
-                        {
-                            'name': name_pokemon,
-                            'picture': picture_pokemon
-                        })
+                        {"name": name_pokemon, "picture": picture_pokemon}
+                    )
 
                     new_pokemon = Pokemon(name_pokemon, picture_pokemon)
 
                     pokemons_found.append(new_pokemon)
 
-                    logger.info(f'--> Found: {new_pokemon.__str__()}')
+                    logger.info(f"--> Found: {new_pokemon.__str__()}")
 
             except Exception as e:
                 logger.error(f'Error POKEMONS search failed, error: "{e}"')

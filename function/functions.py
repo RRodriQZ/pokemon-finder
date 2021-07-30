@@ -6,9 +6,9 @@ import json
 
 # GLOBAL VALUES
 config = ConfigParser()
-config.read('config.ini')
+config.read("config.ini")
 
-API_POKEMON = config['API_POKEMON']['api_url']
+API_POKEMON = config["API_POKEMON"]["api_url"]
 logger = Log().get_logger(__name__)
 time_out = 10
 
@@ -34,7 +34,9 @@ def get_results_from_pokemon_API_call() -> list[dict]:
     """
     try:
         response_api = get_response_by_url(url=API_POKEMON)
-        pokemons_results = sorted(response_api['results'], key=lambda poke: poke['name'], reverse=False)
+        pokemons_results = sorted(
+            response_api["results"], key=lambda poke: poke["name"], reverse=False
+        )
         return pokemons_results
 
     except Exception as e:
