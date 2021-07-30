@@ -1,8 +1,10 @@
+from function.decorator import singleton
 import logging
 
 
+@singleton
 class Log:
-    def __init__(self):
+    def __init__(self) -> None:
         self.LOG_FILENAME = 'log/LOG.log'
         logging.basicConfig(
             filename=self.LOG_FILENAME, level=logging.INFO,
@@ -10,5 +12,5 @@ class Log:
             datefmt='%d/%m/%Y %H:%M:%S')
 
     @staticmethod
-    def get_logger(route):
+    def get_logger(route: str) -> logging:
         return logging.getLogger(route)

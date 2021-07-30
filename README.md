@@ -6,36 +6,43 @@ Se pide desarrollar una aplicación web para buscar Pokemones. Esta debera consu
 Para mas informacion visitar: https://pokeapi.co/
 
 # Pre Requirements 📋
+* **Python 3** - **pipenv** / **Docker-compose**
 
-* Python 3 / Docker-compose
+# Setup Python Virtual Environment 🔧 #
+```cmd
+pip install pipenv
+```
 
-# Setup Python Virtual Environment 🔧
-Windows cmd/ Linux command:
-
-1) python -m venv venv
-
-2) cd venv\Scripts & .\activate
-
-3) cd .. & cd .. & pip install -r requirements.txt
-
-# Running Script 🐼
-
-4) python app.py
-
+**Windows** CMD:
+```cmd
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+```
+**Linux / MAC** command:
+```cmd
+python -m venv venv
+source venv/bin/activate
+python -m pip install -r requirements.txt
+```
+# Running Python Script 🐼 #
+```cmd
+python main.py
+```
 **Unittest:**
-
-* python test.py -v
-
+```cmd
+python test.py -v
+```
 # Running using Docker
-
-1) docker-compose build
-2) docker-compose up
-
+```cmd
+docker-compose build
+docker-compose up
+```
 **Unittest:**
-
+```cmd
 * docker-compose run web python test.py -v
-
-# Web application:
+```
+# Web Application:
 
 Los testeos en [**LOCAL**] se hicieron con el navegador desde la url: http://localhost:5000
 
