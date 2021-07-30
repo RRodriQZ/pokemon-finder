@@ -1,45 +1,44 @@
-from flask import Flask, Response, request, render_template
 from controller.pokemon_controller import search_pokemons_by_name
-from log.logger import Log
+from function.functions import get_results_from_pokemon_API_call
+from flask import Flask, Response, request, render_template
 
+
+pokemons_results = get_results_from_pokemon_API_call()
 app = Flask(__name__)
-log = Log()
 
 
-@app.route('/pokemon_search', methods=['POST', 'GET'])
+@app.route("/pokemon_search", methods=["POST", "GET"])
 def pokemon_search():
-    """
-    En esta vista se completara el formulario para BUSCAR un pokemon
-    por su nombre.
-
-    Esto buscara en la 'API de pokemon' y nos retornara el nombre
-    completo del pokemon y su imagen del pokedex asociada.
+    """ In this view the form to SEARCH a pokemon by name will be completed this will look
+    for the 'pokemon API' and return the name full pokemon and its associated pokedex image
     """
     try:
-        if request.method == 'POST':
-            _search_pokemon_name = request.form.get("name_pokemon")
-            found_pokemons = search_pokemons_by_name(app, _search_pokemon_name)
-            app.logger.info('=== Se completo la busqueda correctamente ====')
-            return render_template("form_pokemon.html",
-                                   found_pokemons=found_pokemons)
+        if request.method == "POST":
+            pokemon_name = request.form.get("name_pokemon")
+            found_pokemons = search_pokemons_by_name(
+                search_pokemon_name=pokemon_name, pokedex=pokemons_results
+            )
+            app.logger.info("=== Search completed successfully ====")
+            return render_template("form_pokemon.html", found_pokemons=found_pokemons)
 
-        elif request.method == 'GET':
+        elif request.method == "GET":
             return render_template("form_pokemon.html")
 
     except Exception as e:
-        app.logger.error('=== Ocurrio un error en la busqueda del pokemon: ' +
-                         str(e))
+        app.logger.error(f'=== Error searching for pokemon, error: "{e}"')
 
 
 @app.errorhandler(404)
 def not_found(error=None):
-    """
-    Manejador de errores para los recursos que no estan contemplados.
-    """
-    app.logger.error('=== Recurso no encontrado: "' + request.url + '" ===')
-    return Response(response='Recurso no encontrado: "' + request.url + '".',
-                    status=404, mimetype='application/json')
+    """ Error handler for resources that are not covered """
+    app.logger.error(f'=== Resource not found: "{request.url}" ===')
+
+    return Response(
+        response=f'Resource not found: "{request.url}"',
+        status=404,
+        mimetype="application/json",
+    )
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=False, port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=False, port=5000)
