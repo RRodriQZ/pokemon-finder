@@ -27,7 +27,7 @@ def get_response_by_url(url: str) -> dict:
         logger.error(f'Error problem calling: "{url}", error: "{e}"')
 
 
-def get_results_from_pokemon_API_call() -> list[dict]:
+def get_results_from_pokemon_API_call() -> list:
     """Returns all pokemons from the API call
 
     :return: list[dict]

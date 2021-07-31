@@ -1,5 +1,5 @@
-from function.functions import get_results_from_pokemon_API_call, get_response_by_url
 from schema.validate import validate_pokemon_for_schema
+from function.functions import get_response_by_url
 from model.pokemon_model import Pokemon
 from log.logger import Log
 
@@ -8,7 +8,7 @@ from log.logger import Log
 logger = Log().get_logger(__name__)
 
 
-def search_pokemons_by_name(search_pokemon_name: str, pokedex: list[dict]) -> list[Pokemon]:
+def search_pokemons_by_name(search_pokemon_name: str, pokedex: list) -> list:
     """The function returns a list of pokemon that meet the search performed by the 'Name' field
     is partial or complete in the 'POKEMON API'
 
