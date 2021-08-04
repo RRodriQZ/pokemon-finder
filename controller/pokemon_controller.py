@@ -1,6 +1,5 @@
-from schema.validate import validate_pokemon_for_schema
 from function.functions import get_response_by_url
-from model.pokemon_model import Pokemon
+from schema.validator import PokemonSchema
 from log.logger import Log
 
 
@@ -29,14 +28,16 @@ def search_pokemons_by_name(search_pokemon_name: str, pokedex: list) -> list:
                 if pokemon["name"].startswith(search_pokemon_name):
 
                     response_pokemon = get_response_by_url(url=pokemon["url"])
+
                     name_pokemon = pokemon["name"]
                     picture_pokemon = response_pokemon["sprites"]["front_default"]
 
-                    validate_pokemon_for_schema(
-                        {"name": name_pokemon, "picture": picture_pokemon}
+                    new_pokemon = PokemonSchema().load(
+                        {
+                            "name_pokemon": name_pokemon,
+                            "picture_pokemon": picture_pokemon,
+                        }
                     )
-
-                    new_pokemon = Pokemon(name_pokemon, picture_pokemon)
 
                     pokemons_found.append(new_pokemon)
 
