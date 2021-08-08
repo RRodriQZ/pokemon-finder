@@ -6,7 +6,7 @@ import json
 
 # GLOBAL VALUES
 config = ConfigParser()
-config.read("config.ini")
+config.read("function/resources/configuration.ini")
 
 API_POKEMON = config["API_POKEMON"]["api_url"]
 logger = Log().get_logger(__name__)
