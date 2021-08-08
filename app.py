@@ -7,9 +7,19 @@ pokemons_results = get_results_from_pokemon_API_call()
 app = Flask(__name__)
 
 
+@app.route("/", methods=["GET"])
+def get_status():
+    """Return API Status"""
+    return Response(
+        response=f"The API POKEMON works!",
+        status=200,
+        mimetype="application/json",
+    )
+
+
 @app.route("/pokemon_search", methods=["POST", "GET"])
 def pokemon_search():
-    """ In this view the form to SEARCH a pokemon by name will be completed this will look
+    """In this view the form to SEARCH a pokemon by name will be completed this will look
     for the 'pokemon API' and return the name full pokemon and its associated pokedex image
     """
     try:
