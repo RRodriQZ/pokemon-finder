@@ -1,33 +1,32 @@
 # POKEMON FINDER #
 
-Se pide desarrollar una aplicación web para buscar Pokemones. Esta debera consumir los datos de 
-"la API de Pokemones".
+It is requested to develop a web application to search for Pokemons. This should consume the data from
+"the API Pokemon"
 
-Para mas informacion visitar: https://pokeapi.co/
+For more information visit: https://pokeapi.co/
 
 # Pre Requirements 📋
-* **Python 3** - **pipenv** / **Docker-compose**
+* **Python 3**-**pipenv** / **Docker-compose**
 
 # Setup Python Virtual Environment 🔧 #
 ```cmd
 pip install pipenv
 ```
-
 **Windows** CMD:
 ```cmd
 python -m venv venv
 .\venv\Scripts\activate
-pip install -r requirements.txt
+pip install -e .
 ```
 **Linux / MAC** command:
 ```cmd
 python -m venv venv
 source venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -e .
 ```
 # Running Python Script 🐼 #
 ```cmd
-python main.py
+python app.py
 ```
 **Unittest:**
 ```cmd
@@ -40,11 +39,11 @@ docker-compose up
 ```
 **Unittest:**
 ```cmd
-* docker-compose run web python test.py -v
+docker-compose run web python test.py -v
 ```
 # Web Application:
 
-Los testeos en [**LOCAL**] se hicieron con el navegador desde la url: http://localhost:5000
+The tests in [**LOCAL**] were made with the browser from the url: http://localhost:5000
 
 **Endpoints:**
 1) > POST / GET → **/pokemon_search**

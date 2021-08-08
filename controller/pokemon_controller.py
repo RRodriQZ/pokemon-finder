@@ -3,7 +3,7 @@ from schema.validator import PokemonSchema
 from log.logger import Log
 
 
-# GLOBAL VALUES
+# GLOBAL VALUES #
 logger = Log().get_logger(__name__)
 
 
