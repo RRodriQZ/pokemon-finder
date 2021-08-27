@@ -1,5 +1,5 @@
 from function.functions import get_response_by_url
-from schema.validator import PokemonSchema
+from schema.pokemon_schema import PokemonSchema
 from log.logger import Log
 
 
@@ -11,8 +11,8 @@ def search_pokemons_by_name(search_pokemon_name: str, pokedex: list) -> list:
     """The function returns a list of pokemon that meet the search performed by the 'Name' field
     is partial or complete in the 'POKEMON API'
 
-    :param pokedex: list[dict]
     :param search_pokemon_name: str
+    :param pokedex: list[dict]
     :return: list[Pokemon]
     """
     try:
@@ -29,13 +29,10 @@ def search_pokemons_by_name(search_pokemon_name: str, pokedex: list) -> list:
 
                     response_pokemon = get_response_by_url(url=pokemon["url"])
 
-                    name_pokemon = pokemon["name"]
-                    picture_pokemon = response_pokemon["sprites"]["front_default"]
-
                     new_pokemon = PokemonSchema().load(
                         {
-                            "name_pokemon": name_pokemon,
-                            "picture_pokemon": picture_pokemon,
+                            "name_pokemon": pokemon["name"],
+                            "picture_pokemon": response_pokemon["sprites"]["front_default"],
                         }
                     )
 
