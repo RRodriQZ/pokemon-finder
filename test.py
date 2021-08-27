@@ -1,6 +1,6 @@
 from controller.pokemon_controller import search_pokemons_by_name
 from function.functions import get_results_from_pokemon_API_call
-from schema.validator import PokemonSchema
+from schema.pokemon_schema import PokemonSchema
 from flask import Flask
 import unittest
 
